@@ -1,0 +1,13 @@
+# OSX
+.DS_Store
+
+# VS Code settings
+.vscode
+.project
+.settings
+.classpath
+
+# node.js
+node_modules/
+npm-debug.log
+yarn-error.log
