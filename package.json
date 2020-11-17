@@ -1,5 +1,5 @@
 {
-  "name": "@enhancers/time-calculator",
+  "name": "@enhancers/math-lexer-evaluator",
   "version": "1.0.0",
   "description": "Cycle time calculator",
   "main": "lib/index.js",
@@ -7,6 +7,7 @@
   "scripts": {
     "build": "rimraf ./lib && tsc",
     "test": "jest",
+    "test:watch": "jest --watch",
     "test:coverage": "rimraf ./coverage && jest --coverage",
     "ts-check": "tsc --noEmit --project ."
   },
