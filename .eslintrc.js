@@ -10,6 +10,7 @@ module.exports = {
     'no-unreachable': 'off',
     'no-bitwise': 'off',
     'no-nested-ternary': 'warn',
+    'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {
