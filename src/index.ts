@@ -158,7 +158,7 @@ export function lex(input: string, cb: (token: string) => number): [] {
 
         // if the stack runs out without finding a left parenthesis, then there are mismatched parentheses.
         if (operators.length === 0 && operator !== BRACKET_LEFT) {
-          throw new Error('Mismatched parentheses');
+          throw new SyntaxError('Mismatched parentheses');
         }
 
         if (operator === BRACKET_LEFT) {
@@ -178,7 +178,7 @@ export function lex(input: string, cb: (token: string) => number): [] {
 
     // if the operator token on the top of the stack is a parenthesis, then there are mismatched parentheses.
     if (!!operator && [BRACKET_LEFT, BRACKET_RIGHT].includes(operator)) {
-      throw new Error('Mismatched parentheses');
+      throw new SyntaxError('Mismatched parentheses');
     }
 
     // pop the operator from the operator stack onto the output queue.
@@ -188,7 +188,7 @@ export function lex(input: string, cb: (token: string) => number): [] {
   return tokens;
 }
 
-export function reversePolish(tokens: (Operator | number)[]): Number {
+export function evaluate(tokens: (Operator | number)[]): Number {
   let stack = [];
 
   for (let i = 0; i < tokens.length; i++) {

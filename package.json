@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Cycle time calculator",
   "main": "lib/index.js",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "rimraf ./lib && tsc",
     "test": "jest",

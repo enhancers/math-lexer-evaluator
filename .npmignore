@@ -1,0 +1,20 @@
+# OSX
+.DS_Store
+
+# VS Code settings
+.vscode
+.project
+.settings
+.classpath
+
+# webstorm
+.idea
+
+# node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+tsconfig.json
+package-lock.json
+**/__test__/**

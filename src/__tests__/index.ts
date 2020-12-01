@@ -1,4 +1,4 @@
-import {lex, reversePolish} from '../index';
+import {lex, evaluate} from '../index';
 
 it('Calculation 1', () => {
   const lexedExpression = lex('a + 2 * 3 - 8', (variable) => {
@@ -9,7 +9,7 @@ it('Calculation 1', () => {
     return NaN;
   });
 
-  const result = reversePolish(lexedExpression);
+  const result = evaluate(lexedExpression);
 
   expect(typeof result).toBe('number');
   expect(result).not.toBeNaN();
@@ -18,7 +18,7 @@ it('Calculation 1', () => {
 
 it('Calculation 2', () => {
   const lexedExpression2 = lex('(1 + 2) * (-3 - 4) + 5 * 6', () => 0);
-  const result2 = reversePolish(lexedExpression2);
+  const result2 = evaluate(lexedExpression2);
 
   expect(typeof result2).toBe('number');
   expect(result2).not.toBeNaN();
@@ -27,7 +27,7 @@ it('Calculation 2', () => {
 
 it('Calculation 3', () => {
   const lexedExpression3 = lex('2 / 2', () => 0);
-  const result3 = reversePolish(lexedExpression3);
+  const result3 = evaluate(lexedExpression3);
 
   expect(typeof result3).toBe('number');
   expect(result3).not.toBeNaN();
@@ -43,7 +43,7 @@ it('Calculation 4', () => {
     return NaN;
   });
 
-  const result = reversePolish(lexedExpression);
+  const result = evaluate(lexedExpression);
 
   expect(typeof result).toBe('number');
   expect(result).not.toBeNaN();
