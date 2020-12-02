@@ -58,12 +58,12 @@ it('Calculation 4', () => {
 
 it('Calculation 5', () => {
   const lexedExpression = lex(
-    '(rinseIterationTime+3)*(rinseIterations-1)+rinseIterationTime',
+    '(rinseIterationTime+3)*(haier_SoakPrewashSelection-1)+rinseIterationTime',
     (variable) => {
       switch (variable) {
         case 'rinseIterationTime':
           return 2;
-        case 'rinseIterations':
+        case 'haier_SoakPrewashSelection':
           return 3;
       }
 

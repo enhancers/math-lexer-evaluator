@@ -15,6 +15,14 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+src/
+jest.config.js
 tsconfig.json
+.eslintrc.js
+.huskyrc
+.lintstagedrc
+.prettierignore
+.prettierrc.js
 package-lock.json
-**/__test__/**
+coverage/
+**/__tests__/
