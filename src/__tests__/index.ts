@@ -1,13 +1,19 @@
 import {lex, evaluate} from '../index';
 
 it('Calculation 1', () => {
-  const lexedExpression = lex('a + 2 * 3 - 8', (variable) => {
-    if (variable === 'a') {
-      return -1;
-    }
+  const lexedExpression = lex(
+    'mainWashTime + #loadCapacityWash * 3 - 8',
+    (variable) => {
+      switch (variable) {
+        case 'mainWashTime':
+          return -1;
+        case '#loadCapacityWash':
+          return 2;
+      }
 
-    return NaN;
-  });
+      return NaN;
+    },
+  );
 
   const result = evaluate(lexedExpression);
 
