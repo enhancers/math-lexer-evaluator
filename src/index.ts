@@ -73,7 +73,6 @@ export function lex(
   input = removeSpaces(input);
 
   const variables = input.match(/#?([A-Za-z_]?)+[0-9]?[a-zA-Z_]+[0-9]?/g);
-  console.log('variables', variables);
 
   let operators: Operator[] = [];
   let tokens: (Operator | number)[] = [];
