@@ -1,4 +1,4 @@
-import {lex, evaluate} from '../index';
+import {lex, evaluate} from '../';
 
 it('Calculation 1', () => {
   const lexedExpression = lex(

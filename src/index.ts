@@ -1,5 +1,3 @@
-// @ts-nocheck
-
 import {
   ADDITION,
   Associativity,
@@ -18,6 +16,8 @@ type Rules = {
     associativity: Associativity;
   };
 };
+
+type NumberBuffer = number | string;
 
 const Rules: Rules = {
   [ADDITION]: {
@@ -50,26 +50,33 @@ function removeSpaces(input: string): string {
   return input.replace(/\s/g, '');
 }
 
-function isNumber(input: string): boolean {
-  return Number.isInteger(Number.parseInt(input));
+function isNumber(input: number | string): boolean {
+  if (typeof input === 'string') {
+    return Number.isInteger(Number.parseInt(input));
+  }
+
+  return Number.isInteger(input);
 }
 
 function isNaN(input: number): boolean {
   return Number.isNaN(input);
 }
 
-function peek(index: number, input: Array<string>): string {
+function peek(index: number, input: string): string {
   return input[index + 1];
 }
 
-export function lex(input: string, cb: (token: string) => number): [] {
+export function lex(
+  input: string,
+  cb: (token: string) => number,
+): (string | number)[] {
   input = removeSpaces(input);
 
   const variables = input.match(/#?([A-Za-z]?)+[0-9]?[a-zA-Z]+[0-9]?/g);
 
   let operators: Operator[] = [];
-  let tokens = [];
-  let numberBuffer = [];
+  let tokens: (Operator | number)[] = [];
+  let numberBuffer: NumberBuffer[] = [];
   let index = 0;
 
   if (variables && variables.length) {
@@ -77,17 +84,16 @@ export function lex(input: string, cb: (token: string) => number): [] {
       const variable = variables[i];
       const number = cb(variable);
 
-      if (!isNumber(number) || isNaN(number)) {
+      if (isNaN(number)) {
         throw new RangeError('Value is NaN');
       }
 
-      input = input.replace(variable, number);
+      input = input.replace(variable, String(number));
     }
   }
 
   while (index < input.length) {
     const token = input[index];
-    console.log('[token]', token);
 
     // there is a minus sign at the first index
     // or the token is a minus sign and the previous token i an operator or a left bracket
@@ -115,16 +121,16 @@ export function lex(input: string, cb: (token: string) => number): [] {
 
       if (!isNumber(peeked) && peeked !== '.') {
         tokens.push(Number.parseFloat(numberBuffer.join('')));
-        console.log('push number to tokens', numberBuffer, tokens);
         numberBuffer = [];
       }
     }
 
     // if the token is an operator push it onto the operators stack
     if (
-      Object.keys(Rules).includes(token) &&
-      token !== BRACKET_LEFT &&
-      token !== BRACKET_RIGHT
+      token === ADDITION ||
+      token === SUBTRACTION ||
+      token === DIVISION ||
+      token === MULTIPLICATION
     ) {
       while (
         // there is an operator at the top of the operator stack
@@ -139,7 +145,11 @@ export function lex(input: string, cb: (token: string) => number): [] {
         // the operator at the top of the operator stack is not a left parenthesis
         operators[operators.length - 1] !== BRACKET_LEFT
       ) {
-        tokens.push(operators.pop());
+        const operator = operators.pop();
+
+        if (operator) {
+          tokens.push(operator);
+        }
       }
 
       operators.push(token);
@@ -165,7 +175,9 @@ export function lex(input: string, cb: (token: string) => number): [] {
           break;
         }
 
-        tokens.push(operator);
+        if (operator) {
+          tokens.push(operator);
+        }
       }
     }
 
@@ -182,40 +194,49 @@ export function lex(input: string, cb: (token: string) => number): [] {
     }
 
     // pop the operator from the operator stack onto the output queue.
-    tokens.push(operator);
+    if (operator) {
+      tokens.push(operator);
+    }
   }
 
-  return tokens;
+  if (tokens && tokens.length) {
+    return tokens;
+  } else {
+    throw new SyntaxError('Lexer error');
+  }
 }
 
-export function evaluate(tokens: (Operator | number)[]): Number {
-  let stack = [];
+export function evaluate(tokens: (number | string)[]): Number {
+  let stack: number[] = [];
 
   for (let i = 0; i < tokens.length; i++) {
+    // @ts-ignore
     if (!isNaN(tokens[i]) && isFinite(tokens[i])) {
+      // @ts-ignore
       stack.push(tokens[i]);
     } else {
       let a = stack.pop();
       let b = stack.pop();
 
-      switch (tokens[i]) {
-        case ADDITION:
-          stack.push(parseFloat(a) + parseFloat(b));
-          break;
-        case SUBTRACTION:
-          stack.push(parseFloat(b) - parseFloat(a));
-          break;
-        case MULTIPLICATION:
-          stack.push(parseFloat(a) * parseFloat(b));
-          break;
-        case DIVISION:
-          stack.push(parseFloat(b) / parseFloat(a));
-          break;
+      if (a && b) {
+        switch (tokens[i]) {
+          case ADDITION:
+            stack.push(a + b);
+            break;
+          case SUBTRACTION:
+            stack.push(b - a);
+            break;
+          case MULTIPLICATION:
+            stack.push(a * b);
+            break;
+          case DIVISION:
+            stack.push(b / a);
+            break;
+        }
       }
     }
   }
 
-  console.log('stack', stack);
   if (stack.length > 1 || typeof stack[0] !== 'number') {
     throw new Error('Parsing error!');
   } else {

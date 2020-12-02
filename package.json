@@ -8,7 +8,7 @@
     "build": "rimraf ./lib && tsc",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "rimraf ./coverage && jest --coverage",
+    "test:coverage": "rimraf ./coverage && jest --coverage --collectCoverageFrom=src/**/*.ts",
     "ts-check": "tsc --noEmit --project ."
   },
   "devDependencies": {
