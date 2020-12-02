@@ -55,3 +55,25 @@ it('Calculation 4', () => {
   expect(result).not.toBeNaN();
   expect(result).toBe(-2.5);
 });
+
+it('Calculation 5', () => {
+  const lexedExpression = lex(
+    '(rinseIterationTime+3)*(rinseIterations-1)+rinseIterationTime',
+    (variable) => {
+      switch (variable) {
+        case 'rinseIterationTime':
+          return 2;
+        case 'rinseIterations':
+          return 3;
+      }
+
+      return NaN;
+    },
+  );
+
+  const result = evaluate(lexedExpression);
+
+  expect(typeof result).toBe('number');
+  expect(result).not.toBeNaN();
+  expect(result).toBe(12);
+});
