@@ -77,3 +77,11 @@ it('Calculation 5', () => {
   expect(result).not.toBeNaN();
   expect(result).toBe(12);
 });
+
+it('Calculation 6', () => {
+  const result = evaluate([0, 0, "+", 0, "+", 0, "+", 0, "+"]);
+
+  expect(typeof result).toBe('number');
+  expect(result).not.toBeNaN();
+  expect(result).toBe(0);
+});

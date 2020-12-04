@@ -1,7 +1,7 @@
 import {
   ADDITION,
-  Associativity,
   ASSOCIATIVITY_LEFT,
+  Associativity,
   BRACKET_LEFT,
   BRACKET_RIGHT,
   DIVISION,
@@ -134,17 +134,17 @@ export function lex(
     ) {
       while (
         // there is an operator at the top of the operator stack
-        operators.length &&
-        // the operator at the top of the operator stack has greater precedence
-        (Rules[operators[operators.length - 1]].precedence >
-          Rules[token].precedence ||
-          // the operator at the top of the operator stack has equal precedence and the token is left associative
-          (Rules[operators[operators.length - 1]].precedence ===
-            Rules[token].precedence &&
-            Rules[token].associativity === 'left')) &&
-        // the operator at the top of the operator stack is not a left parenthesis
-        operators[operators.length - 1] !== BRACKET_LEFT
-      ) {
+      operators.length &&
+      // the operator at the top of the operator stack has greater precedence
+      (Rules[operators[operators.length - 1]].precedence >
+        Rules[token].precedence ||
+        // the operator at the top of the operator stack has equal precedence and the token is left associative
+        (Rules[operators[operators.length - 1]].precedence ===
+          Rules[token].precedence &&
+          Rules[token].associativity === 'left')) &&
+      // the operator at the top of the operator stack is not a left parenthesis
+      operators[operators.length - 1] !== BRACKET_LEFT
+        ) {
         const operator = operators.pop();
 
         if (operator) {
@@ -212,13 +212,14 @@ export function evaluate(tokens: (number | string)[]): Number {
   for (let i = 0; i < tokens.length; i++) {
     // @ts-ignore
     if (!isNaN(tokens[i]) && isFinite(tokens[i])) {
+
       // @ts-ignore
       stack.push(tokens[i]);
     } else {
       let a = stack.pop();
       let b = stack.pop();
 
-      if (a && b) {
+      if (a !== undefined && !isNaN(a) && b !== undefined && !isNaN(b)) {
         switch (tokens[i]) {
           case ADDITION:
             stack.push(a + b);
