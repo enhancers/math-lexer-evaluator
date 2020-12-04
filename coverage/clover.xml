@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1606923143294" clover="3.2.0">
-  <project timestamp="1606923143294" name="All files">
-    <metrics statements="89" coveredstatements="86" conditionals="72" coveredconditionals="65" methods="6" coveredmethods="6" elements="167" coveredelements="157" complexity="0" loc="89" ncloc="89" packages="1" files="2" classes="2"/>
-    <file name="index.ts" path="/Users/federico/projects/enhancers/candy/math-lexer-evaluator/src/index.ts">
-      <metrics statements="81" coveredstatements="78" conditionals="72" coveredconditionals="65" methods="6" coveredmethods="6"/>
+<coverage generated="1607092390295" clover="3.2.0">
+  <project timestamp="1607092390295" name="All files">
+    <metrics statements="89" coveredstatements="86" conditionals="74" coveredconditionals="67" methods="6" coveredmethods="6" elements="169" coveredelements="159" complexity="0" loc="89" ncloc="89" packages="1" files="2" classes="2"/>
+    <file name="index.ts" path="/Users/federicopaletta/projects/enhancers/math-lexer-evaluator/src/index.ts">
+      <metrics statements="81" coveredstatements="78" conditionals="74" coveredconditionals="67" methods="6" coveredmethods="6"/>
       <line num="1" count="2" type="stmt"/>
       <line num="22" count="2" type="stmt"/>
       <line num="50" count="7" type="stmt"/>
       <line num="54" count="87" type="cond" truecount="2" falsecount="0"/>
       <line num="55" count="81" type="stmt"/>
       <line num="58" count="6" type="stmt"/>
-      <line num="62" count="43" type="stmt"/>
+      <line num="62" count="92" type="stmt"/>
       <line num="66" count="28" type="stmt"/>
       <line num="69" count="2" type="stmt"/>
       <line num="73" count="7" type="stmt"/>
@@ -66,27 +66,27 @@
       <line num="203" count="5" type="stmt"/>
       <line num="205" count="0" type="stmt"/>
       <line num="209" count="2" type="stmt"/>
-      <line num="210" count="5" type="stmt"/>
-      <line num="212" count="5" type="stmt"/>
-      <line num="214" count="37" type="cond" truecount="4" falsecount="0"/>
-      <line num="216" count="21" type="stmt"/>
-      <line num="218" count="16" type="stmt"/>
-      <line num="219" count="16" type="stmt"/>
-      <line num="221" count="16" type="cond" truecount="3" falsecount="1"/>
-      <line num="222" count="16" type="stmt"/>
-      <line num="224" count="6" type="stmt"/>
-      <line num="225" count="6" type="stmt"/>
-      <line num="227" count="4" type="stmt"/>
+      <line num="210" count="6" type="stmt"/>
+      <line num="212" count="6" type="stmt"/>
+      <line num="214" count="46" type="cond" truecount="4" falsecount="0"/>
+      <line num="217" count="26" type="stmt"/>
+      <line num="219" count="20" type="stmt"/>
+      <line num="220" count="20" type="stmt"/>
+      <line num="222" count="20" type="cond" truecount="5" falsecount="1"/>
+      <line num="223" count="20" type="stmt"/>
+      <line num="225" count="10" type="stmt"/>
+      <line num="226" count="10" type="stmt"/>
       <line num="228" count="4" type="stmt"/>
-      <line num="230" count="5" type="stmt"/>
+      <line num="229" count="4" type="stmt"/>
       <line num="231" count="5" type="stmt"/>
-      <line num="233" count="1" type="stmt"/>
+      <line num="232" count="5" type="stmt"/>
       <line num="234" count="1" type="stmt"/>
-      <line num="240" count="5" type="cond" truecount="3" falsecount="1"/>
-      <line num="241" count="0" type="stmt"/>
-      <line num="243" count="5" type="stmt"/>
+      <line num="235" count="1" type="stmt"/>
+      <line num="241" count="6" type="cond" truecount="3" falsecount="1"/>
+      <line num="242" count="0" type="stmt"/>
+      <line num="244" count="6" type="stmt"/>
     </file>
-    <file name="operators.ts" path="/Users/federico/projects/enhancers/candy/math-lexer-evaluator/src/operators.ts">
+    <file name="operators.ts" path="/Users/federicopaletta/projects/enhancers/math-lexer-evaluator/src/operators.ts">
       <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <line num="1" count="3" type="stmt"/>
       <line num="2" count="3" type="stmt"/>

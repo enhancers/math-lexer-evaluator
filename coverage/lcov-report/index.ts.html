@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.28% </span>
+                <span class="strong">90.54% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>65/72</span>
+                <span class='fraction'>67/74</span>
             </div>
         
             
@@ -302,7 +302,8 @@
 <a name='L243'></a><a href='#L243'>243</a>
 <a name='L244'></a><a href='#L244'>244</a>
 <a name='L245'></a><a href='#L245'>245</a>
-<a name='L246'></a><a href='#L246'>246</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<a name='L246'></a><a href='#L246'>246</a>
+<a name='L247'></a><a href='#L247'>247</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -363,7 +364,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">43x</span>
+<span class="cline-any cline-yes">92x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -511,22 +512,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">37x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">21x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">46x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -541,16 +543,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {
   ADDITION,
-  Associativity,
   ASSOCIATIVITY_LEFT,
+  Associativity,
   BRACKET_LEFT,
   BRACKET_RIGHT,
   DIVISION,
@@ -683,17 +685,17 @@ export function lex(
     ) {
       while (
         // there is an operator at the top of the operator stack
-        operators.length &amp;&amp;
-        // the operator at the top of the operator stack has greater precedence
-        (Rules[operators[operators.length - 1]].precedence &gt;
-          Rules[token].precedence ||
-          // the operator at the top of the operator stack has equal precedence and the token is left associative
-          (Rules[operators[operators.length - 1]].precedence ===
-            Rules[token].precedence &amp;&amp;
-            Rules[token].associativity === 'left')) &amp;&amp;
-        // the operator at the top of the operator stack is not a left parenthesis
-        operators[operators.length - 1] !== BRACKET_LEFT
-      ) {
+      operators.length &amp;&amp;
+      // the operator at the top of the operator stack has greater precedence
+      (Rules[operators[operators.length - 1]].precedence &gt;
+        Rules[token].precedence ||
+        // the operator at the top of the operator stack has equal precedence and the token is left associative
+        (Rules[operators[operators.length - 1]].precedence ===
+          Rules[token].precedence &amp;&amp;
+          Rules[token].associativity === 'left')) &amp;&amp;
+      // the operator at the top of the operator stack is not a left parenthesis
+      operators[operators.length - 1] !== BRACKET_LEFT
+        ) {
         const operator = operators.pop();
 &nbsp;
         <span class="missing-if-branch" title="else path not taken" >E</span>if (operator) {
@@ -761,13 +763,14 @@ export function evaluate(tokens: (number | string)[]): Number {
   for (let i = 0; i &lt; tokens.length; i++) {
     // @ts-ignore
     if (!isNaN(tokens[i]) &amp;&amp; isFinite(tokens[i])) {
+&nbsp;
       // @ts-ignore
       stack.push(tokens[i]);
     } else {
       let a = stack.pop();
       let b = stack.pop();
 &nbsp;
-      <span class="missing-if-branch" title="else path not taken" >E</span>if (a &amp;&amp; b) {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (a !== undefined &amp;&amp; !isNaN(a) &amp;&amp; b !== undefined &amp;&amp; !isNaN(b)) {
         switch (tokens[i]) {
           case ADDITION:
             stack.push(a + b);
@@ -799,7 +802,7 @@ export function evaluate(tokens: (number | string)[]): Number {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Dec 02 2020 16:32:23 GMT+0100 (Ora standard dell’Europa centrale)
+                at Fri Dec 04 2020 15:33:10 GMT+0100 (Central European Standard Time)
             </div>
         </div>
         <script src="prettify.js"></script>
